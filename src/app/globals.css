@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sand-50: #FAF8F5;
+  --color-sand-100: #F5F0EA;
+  --color-sand-200: #E8E4DF;
+  --color-mint-400: #4ECDC4;
+  --color-mint-500: #3DBDB5;
+  --color-mint-600: #2DADA5;
+  --color-forest-600: #2D6A4F;
+  --color-forest-700: #1B4332;
+  --color-ink-900: #1A1A2E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAF8F5;
+  color: #1A1A2E;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0EA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E8E4DF;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4ECDC4;
+}
+
+input:focus,
+button:focus-visible {
+  outline: 2px solid #4ECDC4;
+  outline-offset: 2px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pricing-popular {
+  box-shadow: 0 0 0 2px #4ECDC4, 0 8px 24px rgba(78, 205, 196, 0.15);
+}
