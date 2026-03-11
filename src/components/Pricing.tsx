@@ -41,49 +41,65 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-20 md:py-28">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-4 reveal">
+    <section id="pricing" className="py-24 md:py-36" style={{ background: "#FFFFFF" }}>
+      <div className="max-w-[1100px] mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16 md:mb-20 reveal">
           <h2
-            className="text-3xl md:text-4xl font-bold text-ink-900 mb-3"
+            className="font-bold text-[#1A1A2E] mb-4"
             style={{
               fontFamily: "'Varela Round', sans-serif",
+              fontSize: "clamp(30px, 4vw, 40px)",
+              lineHeight: 1.15,
               letterSpacing: "-0.02em",
-              lineHeight: "1.2",
             }}
           >
             התוכניות שלנו
           </h2>
-          <p className="text-slate-500 text-base max-w-md mx-auto">
+          <p
+            className="text-[#94A3B8] max-w-md mx-auto"
+            style={{ fontSize: "clamp(15px, 2vw, 17px)" }}
+          >
             תוכלו לבחור תוכנית אחרי שנשיק. בינתיים — הירשמו בחינם.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto mt-10">
+        {/* Cards */}
+        <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto stagger">
           {plans.map((plan, i) => (
             <div
               key={i}
-              className={`reveal relative bg-white rounded-card p-7 flex flex-col transition-all ${
+              className={`reveal relative bg-white rounded-[24px] p-8 md:p-10 flex flex-col transition-all duration-500 ${
                 plan.popular
-                  ? "pricing-popular md:scale-[1.04]"
-                  : "shadow-card opacity-[0.88]"
+                  ? "pricing-popular md:scale-[1.05]"
+                  : "opacity-80 hover:opacity-100"
               }`}
-              style={{ transitionDelay: `${i * 120}ms` }}
+              style={{
+                boxShadow: plan.popular
+                  ? undefined
+                  : "0 2px 8px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.04)",
+              }}
             >
               {/* Popular badge */}
               {plan.popular && (
-                <div className="absolute -top-3.5 right-1/2 translate-x-1/2 bg-mint-400 text-white text-xs font-bold px-4 py-1.5 rounded-badge whitespace-nowrap">
+                <div
+                  className="absolute -top-4 right-1/2 translate-x-1/2 rounded-full px-5 py-1.5 text-white font-bold whitespace-nowrap"
+                  style={{
+                    fontSize: "12px",
+                    background: "linear-gradient(to left, #4ECDC4, #38B2AC)",
+                  }}
+                >
                   מומלץ
                 </div>
               )}
 
               {/* Plan name */}
               <div className="mb-5">
-                <span className="text-xs text-slate-400 tracking-wider uppercase">
+                <span className="text-[11px] font-semibold text-[#94A3B8] tracking-wider uppercase">
                   {plan.nameEn}
                 </span>
                 <h3
-                  className="text-xl font-bold text-ink-900"
+                  className="text-[20px] font-bold text-[#1A1A2E]"
                   style={{ fontFamily: "'Varela Round', sans-serif" }}
                 >
                   {plan.name}
@@ -91,35 +107,40 @@ export default function Pricing() {
               </div>
 
               {/* Price */}
-              <div className="flex items-baseline gap-1 mb-6">
+              <div className="flex items-baseline gap-1 mb-7">
                 <span
-                  className="text-4xl font-bold text-ink-900"
-                  style={{ fontFamily: "'DM Mono', monospace" }}
+                  className="text-[40px] font-bold text-[#1A1A2E]"
+                  style={{ fontFamily: "'DM Mono', monospace", lineHeight: 1 }}
                 >
                   ₪{plan.price}
                 </span>
-                <span className="text-slate-400 text-sm"> / לחודש</span>
+                <span className="text-[#94A3B8] text-[13px]"> / לחודש</span>
               </div>
 
               {/* Features */}
-              <ul className="space-y-3 mb-8 flex-1">
-                {plan.features.map((feature, j) => (
-                  <li key={j} className="flex items-start gap-2 text-sm text-slate-500">
-                    <Check className="w-4 h-4 text-mint-400 mt-0.5 flex-shrink-0" />
-                    {feature}
+              <ul className="space-y-3.5 mb-8 flex-1">
+                {plan.features.map((f, j) => (
+                  <li key={j} className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#4ECDC4] mt-0.5 shrink-0" strokeWidth={2.5} />
+                    <span className="text-[14px] text-[#64748B]">{f}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* CTA — always points to waitlist */}
+              {/* CTA */}
               <a
                 href="#waitlist"
                 aria-label="הירשמו לרשימת ההמתנה"
-                className={`block text-center py-3 rounded-btn font-medium text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+                className={`block text-center py-3.5 rounded-full text-[14px] font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
                   plan.popular
-                    ? "bg-mint-400 text-white hover:bg-mint-500 shadow-mint"
-                    : "border-2 border-mint-400 text-mint-400 hover:bg-mint-400/5"
+                    ? "cta-glow text-white"
+                    : "border-2 border-[#E8E4DF] text-[#64748B] hover:border-[#4ECDC4] hover:text-[#4ECDC4]"
                 }`}
+                style={
+                  plan.popular
+                    ? { background: "linear-gradient(to left, #4ECDC4, #38B2AC)" }
+                    : undefined
+                }
               >
                 הירשמו לרשימת ההמתנה
               </a>
@@ -127,7 +148,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="reveal text-center mt-8 text-xs text-slate-400">
+        <p className="reveal text-center mt-10 text-[13px] text-[#94A3B8]">
           * המחירים עשויים להשתנות עד להשקה
         </p>
       </div>

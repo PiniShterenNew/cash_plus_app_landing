@@ -7,9 +7,9 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navLinks = [
@@ -21,97 +21,105 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "nav-glass shadow-nav"
-          : "bg-transparent"
+        scrolled ? "nav-glass" : "bg-transparent"
       }`}
     >
-      <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-[1100px] mx-auto px-6 h-[76px] flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <div
-            className="w-8 h-8 rounded-[10px] flex items-center justify-center text-white font-bold text-sm"
-            style={{
-              background: "linear-gradient(135deg, #4ECDC4, #2D6A4F)",
-            }}
+            className="w-10 h-10 rounded-[14px] flex items-center justify-center text-white font-bold text-sm shrink-0"
+            style={{ background: "linear-gradient(135deg, #4ECDC4, #2D6A4F)" }}
           >
             C+
           </div>
           <span
-            className="text-xl font-bold text-forest-600"
+            className="text-xl font-bold text-[#1A1A2E]"
             style={{ fontFamily: "'Varela Round', sans-serif" }}
           >
             CashPlus
           </span>
         </div>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-9">
+          {navLinks.map((l) => (
             <a
-              key={link.href}
-              href={link.href}
-              className="nav-link-underline text-sm text-ink-900/65 hover:text-forest-600 transition-colors duration-200 pb-0.5"
+              key={l.href}
+              href={l.href}
+              className="nav-link text-[14px] text-[#64748B] hover:text-[#1A1A2E] transition-colors duration-200 pb-1"
             >
-              {link.label}
+              {l.label}
             </a>
           ))}
           <a
             href="#waitlist"
-            className="bg-mint-400 text-white px-5 py-2 rounded-btn text-sm font-medium hover:bg-mint-500 transition-all duration-200 hover:scale-[1.03] active:scale-[0.97] shadow-mint animate-glow-pulse"
             aria-label="הצטרפו ל-Beta"
+            className="cta-glow rounded-full px-7 py-2.5 text-[14px] font-semibold text-white transition-all duration-200 hover:scale-[1.04] active:scale-[0.97]"
+            style={{
+              background: "linear-gradient(to left, #4ECDC4, #38B2AC)",
+            }}
           >
             הצטרפו ל-Beta
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden flex flex-col gap-[5px] p-2"
+          className="md:hidden p-2 flex flex-col gap-[5px]"
           aria-label={mobileOpen ? "סגור תפריט" : "פתח תפריט"}
           aria-expanded={mobileOpen}
         >
           <span
-            className={`block w-[22px] h-[2px] bg-ink-900 rounded-full transition-all duration-300 ${
+            className={`block w-[22px] h-[2px] bg-[#1A1A2E] rounded-full transition-all duration-300 ${
               mobileOpen ? "rotate-45 translate-y-[7px]" : ""
             }`}
           />
           <span
-            className={`block w-[22px] h-[2px] bg-ink-900 rounded-full transition-all duration-300 ${
+            className={`block w-[22px] h-[2px] bg-[#1A1A2E] rounded-full transition-all duration-300 ${
               mobileOpen ? "opacity-0 scale-x-0" : ""
             }`}
           />
           <span
-            className={`block w-[22px] h-[2px] bg-ink-900 rounded-full transition-all duration-300 ${
+            className={`block w-[22px] h-[2px] bg-[#1A1A2E] rounded-full transition-all duration-300 ${
               mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""
             }`}
           />
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile dropdown */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          mobileOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden px-4 transition-all duration-300 overflow-hidden ${
+          mobileOpen ? "max-h-80 opacity-100 pb-3" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="glass border-t border-white/30 px-6 py-5 flex flex-col gap-1">
-          {navLinks.map((link) => (
+        <div
+          className="rounded-[20px] px-5 py-4 flex flex-col gap-1"
+          style={{
+            background: "rgba(255,255,255,0.92)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            boxShadow: "0 12px 48px rgba(0,0,0,0.12)",
+          }}
+        >
+          {navLinks.map((l) => (
             <a
-              key={link.href}
-              href={link.href}
+              key={l.href}
+              href={l.href}
               onClick={() => setMobileOpen(false)}
-              className="text-ink-900/70 hover:text-forest-600 transition-colors py-3 text-sm border-b border-sand-100 last:border-0"
+              className="text-[14px] text-[#64748B] hover:text-[#1A1A2E] transition-colors py-3 border-b border-[#F5F0EA] last:border-0"
             >
-              {link.label}
+              {l.label}
             </a>
           ))}
           <a
             href="#waitlist"
             onClick={() => setMobileOpen(false)}
-            className="bg-mint-400 text-white px-5 py-3 rounded-btn text-center font-medium text-sm mt-3 hover:bg-mint-500 transition-colors"
             aria-label="הצטרפו ל-Beta"
+            className="mt-3 text-center rounded-full px-7 py-3 text-[14px] font-semibold text-white"
+            style={{ background: "linear-gradient(to left, #4ECDC4, #38B2AC)" }}
           >
             הצטרפו ל-Beta
           </a>
