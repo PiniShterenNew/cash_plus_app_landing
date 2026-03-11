@@ -25,55 +25,73 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-20 md:py-28">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-14 reveal">
+    <section id="features" className="py-24 md:py-36" style={{ background: "#FFFFFF" }}>
+      <div className="max-w-[1100px] mx-auto px-6">
+        {/* Section header */}
+        <div className="text-center mb-16 md:mb-20 reveal">
           <h2
-            className="text-3xl md:text-4xl font-bold text-ink-900 mb-3"
+            className="font-bold text-[#1A1A2E] mb-4"
             style={{
               fontFamily: "'Varela Round', sans-serif",
+              fontSize: "clamp(30px, 4vw, 40px)",
+              lineHeight: 1.15,
               letterSpacing: "-0.02em",
-              lineHeight: "1.2",
             }}
           >
             מה CashPlus יעשה בשבילכם?
           </h2>
-          <p className="text-slate-500 text-lg max-w-xl mx-auto">
+          <p
+            className="text-[#94A3B8] max-w-lg mx-auto"
+            style={{ fontSize: "clamp(15px, 2vw, 17px)" }}
+          >
             כלים פיננסיים חכמים שתוכנתו במיוחד לעסקים קטנים
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        {/* Cards grid with stagger */}
+        <div className="grid md:grid-cols-2 gap-6 stagger">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
               <div
                 key={i}
-                className="reveal bg-white rounded-card p-7 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1.5 group"
-                style={{ transitionDelay: `${i * 100}ms` }}
+                className="reveal group bg-white rounded-[24px] p-8 md:p-10 transition-all duration-500"
+                style={{
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.06)",
+                  transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
+                    "0 8px 24px rgba(0,0,0,0.08), 0 20px 60px rgba(0,0,0,0.08)";
+                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(-8px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
+                    "0 2px 8px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.06)";
+                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+                }}
               >
+                {/* Icon */}
                 <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-all duration-300"
+                  className="w-14 h-14 rounded-[16px] flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110"
                   style={{
-                    background: "rgba(78,205,196,0.1)",
-                    transition: "background 0.3s ease, transform 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.background = "rgba(78,205,196,0.18)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.background = "rgba(78,205,196,0.1)";
+                    background:
+                      "linear-gradient(135deg, rgba(78,205,196,0.15) 0%, rgba(78,205,196,0.05) 100%)",
                   }}
                 >
-                  <Icon className="w-5 h-5 text-mint-400" />
+                  <Icon className="w-7 h-7 text-[#4ECDC4]" strokeWidth={1.5} />
                 </div>
+
                 <h3
-                  className="text-lg font-bold text-ink-900 mb-2"
+                  className="text-[18px] font-bold text-[#1A1A2E] mb-2"
                   style={{ fontFamily: "'Varela Round', sans-serif" }}
                 >
                   {feature.title}
                 </h3>
-                <p className="text-slate-500 text-sm leading-relaxed">
+                <p
+                  className="text-[#64748B]"
+                  style={{ fontSize: "14px", lineHeight: 1.7 }}
+                >
                   {feature.desc}
                 </p>
               </div>

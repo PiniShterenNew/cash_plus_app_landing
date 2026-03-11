@@ -2,39 +2,40 @@ import WaitlistForm from "./WaitlistForm";
 
 export default function FinalCTA() {
   return (
-    <section className="py-20 md:py-28 px-6">
+    <section className="py-24 md:py-36 px-6" style={{ background: "#FFFFFF" }}>
       <div
-        className="max-w-[680px] mx-auto rounded-card-lg px-8 py-14 md:px-14 md:py-16 text-center"
+        className="max-w-[680px] mx-auto rounded-[32px] py-16 md:py-24 px-8 md:px-20 text-center reveal"
         style={{
           background:
-            "linear-gradient(145deg, #FAFAF8 0%, rgba(78,205,196,0.06) 60%, rgba(45,106,79,0.04) 100%)",
-          border: "1px solid rgba(78,205,196,0.15)",
-          boxShadow: "0 4px 32px rgba(78,205,196,0.08)",
+            "linear-gradient(145deg, #FFFFFF 0%, #FFFFFF 60%, rgba(78,205,196,0.04) 100%)",
+          border: "1px solid rgba(232,228,223,0.5)",
+          boxShadow:
+            "0 2px 8px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.06)",
         }}
       >
-        <div className="reveal">
-          <h2
-            className="text-3xl md:text-4xl font-bold text-ink-900 mb-4"
-            style={{
-              fontFamily: "'Varela Round', sans-serif",
-              letterSpacing: "-0.02em",
-              lineHeight: "1.2",
-            }}
-          >
-            מוכנים להתחיל?
-          </h2>
-          <p className="text-slate-500 text-lg mb-8">
-            הצטרפו לרשימת ההמתנה וקבלו גישה מוקדמת — בחינם.
-          </p>
+        <h2
+          className="font-bold text-[#1A1A2E] mb-4"
+          style={{
+            fontFamily: "'Varela Round', sans-serif",
+            fontSize: "clamp(30px, 4vw, 40px)",
+            lineHeight: 1.15,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          מוכנים להתחיל?
+        </h2>
+        <p
+          className="text-[#64748B] mb-10 max-w-[400px] mx-auto"
+          style={{ fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.7 }}
+        >
+          הצטרפו לרשימת ההמתנה וקבלו גישה מוקדמת — בחינם.
+        </p>
 
-          <div className="flex justify-center">
-            <WaitlistForm />
-          </div>
+        <WaitlistForm />
 
-          <p className="mt-5 text-xs text-slate-400">
-            🔒 לא נשלח ספאם, מבטיחים.
-          </p>
-        </div>
+        <p className="mt-6 text-[13px] text-[#94A3B8]">
+          🔒 לא נשלח ספאם, מבטיחים.
+        </p>
       </div>
     </section>
   );
