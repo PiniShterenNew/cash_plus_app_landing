@@ -1,20 +1,25 @@
-"use client";
-
-import { useScrollReveal } from "@/lib/useScrollReveal";
+// Server Component — no "use client" here.
+// Only the components that actually need browser APIs
+// (Navbar, WaitlistForm, FAQ) carry their own "use client" directive.
+// Everything else renders as static HTML, dramatically reducing
+// JavaScript sent to the browser and time-to-interactive.
+import dynamic from "next/dynamic";
+import ScrollRevealWrapper from "@/components/ScrollRevealWrapper";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
-import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
-export default function Home() {
-  const ref = useScrollReveal();
+// FAQ has a useState accordion — load its JS in a separate chunk
+// (ssr:true keeps the HTML in the initial server payload for SEO/LCP)
+const FAQ = dynamic(() => import("@/components/FAQ"), { ssr: true });
 
+export default function Home() {
   return (
-    <div ref={ref}>
+    <ScrollRevealWrapper>
       <Navbar />
       <Hero />
       <Features />
@@ -23,6 +28,6 @@ export default function Home() {
       <FAQ />
       <FinalCTA />
       <Footer />
-    </div>
+    </ScrollRevealWrapper>
   );
 }
