@@ -1,23 +1,18 @@
-import { Link2, LayoutDashboard, Send } from "lucide-react";
-
 const steps = [
   {
-    icon: Link2,
-    number: "01",
-    title: "מחברים את החשבון",
-    desc: "סנכרון אוטומטי עם הבנק והנהלת החשבונות",
+    number: "1",
+    title: "מחברים",
+    desc: "סנכרון עם הבנק והנהלת החשבונות",
   },
   {
-    icon: LayoutDashboard,
-    number: "02",
-    title: "מקבלים תמונת מצב",
+    number: "2",
+    title: "רואים",
     desc: "דשבורד תזרים מזומנים חי עם תחזיות",
   },
   {
-    icon: Send,
-    number: "03",
-    title: "גובים בקליק",
-    desc: "שולחים תזכורות ב-WhatsApp ומקבלים תשלומים מהר יותר",
+    number: "3",
+    title: "גובים",
+    desc: "תזכורות גבייה אוטומטיות ב-WhatsApp",
   },
 ];
 
@@ -28,48 +23,61 @@ export default function HowItWorks() {
         <div className="text-center mb-14 reveal">
           <h2
             className="text-3xl md:text-4xl font-bold text-ink-900 mb-3"
-            style={{ fontFamily: "'Varela Round', sans-serif" }}
+            style={{
+              fontFamily: "'Varela Round', sans-serif",
+              letterSpacing: "-0.02em",
+              lineHeight: "1.2",
+            }}
           >
-            איך זה עובד?
+            שלושה צעדים, תמונה ברורה
           </h2>
-          <p className="text-gray-500 text-lg">שלושה צעדים פשוטים לשליטה מלאה</p>
+          <p className="text-slate-500 text-lg">
+            מהתחברות לתמונה פיננסית מלאה — בדקות
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 relative">
-          {/* Connecting line (desktop) */}
-          <div className="hidden md:block absolute top-16 right-[20%] left-[20%] h-px bg-sand-200" />
+          {/* Dashed connecting line (desktop) */}
+          <div
+            className="hidden md:block absolute top-6 right-[22%] left-[22%] h-px"
+            style={{
+              borderTop: "2px dashed rgba(78,205,196,0.35)",
+            }}
+          />
 
-          {steps.map((step, i) => {
-            const Icon = step.icon;
-            return (
+          {steps.map((step, i) => (
+            <div
+              key={i}
+              className="reveal text-center relative"
+              style={{ transitionDelay: `${i * 150}ms` }}
+            >
+              {/* Number circle */}
               <div
-                key={i}
-                className="reveal text-center relative"
-                style={{ transitionDelay: `${i * 150}ms` }}
+                className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10"
+                style={{
+                  background: "linear-gradient(135deg, #4ECDC4, #2D6A4F)",
+                  boxShadow: "0 8px 24px rgba(78,205,196,0.3)",
+                }}
               >
-                {/* Step number circle */}
-                <div className="relative mx-auto mb-6">
-                  <div className="w-16 h-16 rounded-full bg-mint-400/10 flex items-center justify-center mx-auto relative z-10 border-4 border-sand-50 md:border-white">
-                    <Icon className="w-7 h-7 text-mint-400" />
-                  </div>
-                  <span
-                    className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-forest-600 text-white text-xs font-bold flex items-center justify-center z-20"
-                    style={{ fontFamily: "'DM Mono', monospace" }}
-                  >
-                    {step.number}
-                  </span>
-                </div>
-
-                <h3
-                  className="text-lg font-bold text-ink-900 mb-2"
-                  style={{ fontFamily: "'Varela Round', sans-serif" }}
+                <span
+                  className="text-white font-bold text-lg"
+                  style={{ fontFamily: "'DM Mono', monospace" }}
                 >
-                  {step.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{step.desc}</p>
+                  {step.number}
+                </span>
               </div>
-            );
-          })}
+
+              <h3
+                className="text-xl font-bold text-ink-900 mb-2"
+                style={{ fontFamily: "'Varela Round', sans-serif" }}
+              >
+                {step.title}
+              </h3>
+              <p className="text-slate-500 text-sm leading-relaxed max-w-[200px] mx-auto">
+                {step.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
