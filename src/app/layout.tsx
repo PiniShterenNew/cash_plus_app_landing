@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CashPlus — שליטה פיננסית לעסקים חכמים",
+  title: "CashPlus — ניהול תזרים מזומנים לעסקים קטנים",
   description:
-    "CashPlus נותן לעסקים קטנים ובינוניים שליטה מלאה על תזרים המזומנים — עם גבייה חכמה דרך WhatsApp, תחזיות אוטומטיות, והתראות בזמן אמת.",
+    "CashPlus עוזר לעסקים קטנים בישראל לעקוב אחרי הכסף, לגבות חובות בקלות דרך WhatsApp, ולדעת מה הולך לקרות — לפני שזה קורה.",
   keywords: [
     "תזרים מזומנים",
     "ניהול פיננסי",
@@ -12,11 +12,12 @@ export const metadata: Metadata = {
     "גבייה",
     "WhatsApp",
     "חשבוניות",
+    "Beta",
   ],
   openGraph: {
-    title: "CashPlus — שליטה פיננסית לעסקים חכמים",
+    title: "CashPlus — ניהול תזרים מזומנים פשוט כמו שצריך",
     description:
-      "שליטה מלאה על תזרים המזומנים עם גבייה חכמה דרך WhatsApp ותחזיות אוטומטיות",
+      "CashPlus עוזר לעסקים קטנים בישראל לעקוב אחרי הכסף, לגבות דרך WhatsApp, ולקבל תחזיות — הכל ממקום אחד.",
     locale: "he_IL",
     type: "website",
   },
@@ -37,9 +38,12 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta name="theme-color" content="#4ECDC4" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
       <body
         className="antialiased bg-sand-50 text-ink-900"

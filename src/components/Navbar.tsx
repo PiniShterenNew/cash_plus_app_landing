@@ -7,7 +7,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -22,15 +22,15 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-sand-50/80 backdrop-blur-lg shadow-nav"
+          ? "nav-glass shadow-nav"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm"
+            className="w-8 h-8 rounded-[10px] flex items-center justify-center text-white font-bold text-sm"
             style={{
               background: "linear-gradient(135deg, #4ECDC4, #2D6A4F)",
             }}
@@ -51,52 +51,58 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-ink-900/70 hover:text-forest-600 transition-colors"
+              className="nav-link-underline text-sm text-ink-900/65 hover:text-forest-600 transition-colors duration-200 pb-0.5"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#waitlist"
-            className="bg-mint-400 text-white px-5 py-2 rounded-btn text-sm font-medium hover:bg-mint-500 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-mint-400 text-white px-5 py-2 rounded-btn text-sm font-medium hover:bg-mint-500 transition-all duration-200 hover:scale-[1.03] active:scale-[0.97] shadow-mint animate-glow-pulse"
+            aria-label="הצטרפו ל-Beta"
           >
-            הצטרפו לרשימת ההמתנה
+            הצטרפו ל-Beta
           </a>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          aria-label="תפריט"
+          className="md:hidden flex flex-col gap-[5px] p-2"
+          aria-label={mobileOpen ? "סגור תפריט" : "פתח תפריט"}
+          aria-expanded={mobileOpen}
         >
           <span
-            className={`block w-5 h-0.5 bg-ink-900 transition-transform ${
-              mobileOpen ? "rotate-45 translate-y-2" : ""
+            className={`block w-[22px] h-[2px] bg-ink-900 rounded-full transition-all duration-300 ${
+              mobileOpen ? "rotate-45 translate-y-[7px]" : ""
             }`}
           />
           <span
-            className={`block w-5 h-0.5 bg-ink-900 transition-opacity ${
-              mobileOpen ? "opacity-0" : ""
+            className={`block w-[22px] h-[2px] bg-ink-900 rounded-full transition-all duration-300 ${
+              mobileOpen ? "opacity-0 scale-x-0" : ""
             }`}
           />
           <span
-            className={`block w-5 h-0.5 bg-ink-900 transition-transform ${
-              mobileOpen ? "-rotate-45 -translate-y-2" : ""
+            className={`block w-[22px] h-[2px] bg-ink-900 rounded-full transition-all duration-300 ${
+              mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""
             }`}
           />
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-lg border-t border-sand-200 px-6 py-4 flex flex-col gap-4">
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          mobileOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="glass border-t border-white/30 px-6 py-5 flex flex-col gap-1">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="text-ink-900/70 hover:text-forest-600 transition-colors py-2"
+              className="text-ink-900/70 hover:text-forest-600 transition-colors py-3 text-sm border-b border-sand-100 last:border-0"
             >
               {link.label}
             </a>
@@ -104,12 +110,13 @@ export default function Navbar() {
           <a
             href="#waitlist"
             onClick={() => setMobileOpen(false)}
-            className="bg-mint-400 text-white px-5 py-3 rounded-btn text-center font-medium"
+            className="bg-mint-400 text-white px-5 py-3 rounded-btn text-center font-medium text-sm mt-3 hover:bg-mint-500 transition-colors"
+            aria-label="הצטרפו ל-Beta"
           >
-            הצטרפו לרשימת ההמתנה
+            הצטרפו ל-Beta
           </a>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

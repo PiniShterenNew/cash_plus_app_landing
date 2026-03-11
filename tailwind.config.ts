@@ -10,14 +10,14 @@ const config: Config = {
     extend: {
       colors: {
         sand: {
-          50: "#FAF8F5",
+          50: "#FAFAF8",
           100: "#F5F0EA",
           200: "#E8E4DF",
         },
         mint: {
           400: "#4ECDC4",
           500: "#3DBDB5",
-          600: "#2DAD A5",
+          600: "#2DADA5",
         },
         forest: {
           600: "#2D6A4F",
@@ -26,6 +26,10 @@ const config: Config = {
         ink: {
           900: "#1A1A2E",
         },
+        slate: {
+          400: "#94A3B8",
+          500: "#64748B",
+        },
       },
       fontFamily: {
         heading: ["var(--font-varela-round)", "sans-serif"],
@@ -33,33 +37,26 @@ const config: Config = {
         mono: ["var(--font-dm-mono)", "monospace"],
       },
       borderRadius: {
-        card: "12px",
-        btn: "8px",
-        badge: "24px",
+        sm: "10px",
+        card: "16px",
+        "card-lg": "24px",
+        "card-xl": "32px",
+        btn: "9999px",
+        badge: "9999px",
       },
       boxShadow: {
-        card: "0 2px 12px rgba(0, 0, 0, 0.06)",
-        "card-hover": "0 8px 24px rgba(0, 0, 0, 0.1)",
+        sm: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)",
+        card: "0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.03)",
+        "card-hover":
+          "0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.03)",
         nav: "0 1px 8px rgba(0, 0, 0, 0.06)",
+        mint: "0 8px 32px rgba(78,205,196,0.2)",
       },
-      animation: {
-        "fade-up": "fadeUp 0.6s ease-out forwards",
-        "fade-in": "fadeIn 0.5s ease-out forwards",
-        float: "float 6s ease-in-out infinite",
+      letterSpacing: {
+        heading: "-0.02em",
       },
-      keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-12px)" },
-        },
+      lineHeight: {
+        heading: "1.2",
       },
     },
   },
