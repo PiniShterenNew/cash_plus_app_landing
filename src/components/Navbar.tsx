@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,20 +27,16 @@ export default function Navbar() {
     >
       <div className="max-w-[1100px] mx-auto px-6 h-[76px] flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-3">
-          <div
-            className="w-10 h-10 rounded-[14px] flex items-center justify-center text-white font-bold text-sm shrink-0"
-            style={{ background: "linear-gradient(135deg, #4ECDC4, #2D6A4F)" }}
-          >
-            C+
-          </div>
-          <span
-            className="text-xl font-bold text-[#1A1A2E]"
-            style={{ fontFamily: "'Varela Round', sans-serif" }}
-          >
-            CashPlus
-          </span>
-        </div>
+        <a href="/" aria-label="CashPlus">
+          <Image
+            src="/cashplus_logo.svg"
+            alt="CashPlus"
+            width={48}
+            height={48}
+            priority
+            className="h-12 w-auto"
+          />
+        </a>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-9">

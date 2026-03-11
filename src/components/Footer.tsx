@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer
@@ -6,7 +8,16 @@ export default function Footer() {
     >
       <div className="max-w-[1100px] mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-          <span className="text-[13px] text-[#94A3B8]">© 2026 CashPlus</span>
+          <div className="flex items-center gap-2">
+            <Image
+              src="/cashplus_logo.svg"
+              alt="CashPlus"
+              width={32}
+              height={32}
+              className="h-8 w-auto"
+            />
+            <span className="text-[13px] text-[#94A3B8]">© 2026 CashPlus</span>
+          </div>
           <a
             href="mailto:hello@cashplus.co.il"
             className="text-[13px] text-[#94A3B8] hover:text-[#2D6A4F] transition-colors duration-200"
