@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+// NOTE: In production (Vercel), replace these <link> tags with next/font/google
+// for zero-latency self-hosted fonts:
+//   import { Varela_Round, Rubik, DM_Mono } from "next/font/google"
+// This build environment blocks outbound TLS to fonts.googleapis.com.
+
 export const metadata: Metadata = {
   title: "CashPlus — ניהול תזרים מזומנים לעסקים קטנים",
   description:
@@ -31,16 +36,22 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <head>
+        {/* Preconnect to cut round-trip latency for Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Preload Rubik (body font) so it's fetched before render */}
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Varela+Round&family=DM+Mono:wght@400;500&display=swap&subset=latin,hebrew"
         />
+        {/* Single stylesheet — fixed duplicate &display=swap */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap&display=swap"
           rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Varela+Round&family=DM+Mono:wght@400;500&display=swap&subset=latin,hebrew"
         />
+
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="theme-color" content="#4ECDC4" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
